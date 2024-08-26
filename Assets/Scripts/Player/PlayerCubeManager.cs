@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCubeManager : MonoBehaviour
+public class PlayerCubeManager : Singleton<PlayerCubeManager>
 {
-    //public static PlayerCubeManager Instance;
 
     public event Action OnPlayerDead;
 
@@ -16,11 +15,7 @@ public class PlayerCubeManager : MonoBehaviour
 
     GameObject lastCubeObject;
 
-    /*private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-    }*/
+
 
     void Start()
     {

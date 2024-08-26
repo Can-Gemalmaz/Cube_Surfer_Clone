@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeController : Singleton<PlayerCubeManager>
+public class CubeController : MonoBehaviour
 {
     [SerializeField] float maxRayDistance = 1.0f;
 
@@ -15,7 +15,7 @@ public class CubeController : Singleton<PlayerCubeManager>
 
     void Start()
     {
-        cubeManager = Instance;
+        cubeManager = PlayerCubeManager.Instance;
 
     }
 

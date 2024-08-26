@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : Singleton<PlayerCubeManager>
+public class GameManager : MonoBehaviour
 {
     [SerializeField] Button replayButton;
     [SerializeField] Button quitButton;
@@ -31,7 +31,7 @@ public class GameManager : Singleton<PlayerCubeManager>
 
     private void Start()
     {
-        cubeManager = Instance;
+        cubeManager = PlayerCubeManager.Instance;
 
         diamondManager = cubeManager.GetComponent<PlayerDiamondManager>();
         cubeManager.OnPlayerDead += OnPlayerDeadEvent;
