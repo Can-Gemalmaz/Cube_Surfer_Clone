@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<PlayerCubeManager>
 {
     [SerializeField] Button replayButton;
     [SerializeField] Button quitButton;
@@ -33,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        cubeManager = PlayerCubeManager.Instance;
+        cubeManager = Instance;
 
         diamondManager = cubeManager.GetComponent<PlayerDiamondManager>();
         cubeManager.OnPlayerDead += OnPlayerDeadEvent;

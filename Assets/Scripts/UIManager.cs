@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<PlayerCubeManager>
 {
     [SerializeField] TextMeshProUGUI diamondCountText;
 
@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        PlayerDiamondManager playerDiamondManager = PlayerCubeManager.Instance.GetComponent<PlayerDiamondManager>();
+        PlayerDiamondManager playerDiamondManager = Instance.GetComponent<PlayerDiamondManager>();
 
         if(playerDiamondManager != null)
         {
