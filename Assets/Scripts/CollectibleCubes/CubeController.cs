@@ -16,7 +16,7 @@ public class CubeController : MonoBehaviour
     void Start()
     {
         cubeManager = PlayerCubeManager.Instance;
-        //cubeManager = GameObject.FindWithTag("Player").GetComponent<PlayerCubeManager>();
+
     }
 
     private void FixedUpdate()

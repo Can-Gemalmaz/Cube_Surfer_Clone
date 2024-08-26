@@ -4,41 +4,45 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] Transform parentObject;
-    [SerializeField] PoolableObject poolableObject;
+    [SerializeField] GameObject poolableObjectPrefab;
     [SerializeField] int maxAmountPool;
 
-    List<PoolableObject> _pooledObjects;
+    Stack<GameObject> _pooledObjects;
 
     private void Awake()
     {
-        _pooledObjects = new List<PoolableObject>();
+        _pooledObjects = new Stack<GameObject>();
 
-        for (int i = 0; i < maxAmountPool; i++) 
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < maxAmountPool; i++)
         {
             AddNewObject();
         }
-
     }
 
     private void AddNewObject()
     {
-        GameObject newObject = Instantiate(poolableObject.gameObject, parentObject);
+        GameObject newObject = Instantiate(poolableObjectPrefab, parentObject);
         newObject.SetActive(false);
-        _pooledObjects.Add(newObject.GetComponent<PoolableObject>());
+        _pooledObjects.Push(newObject);
     }
 
 
-    public PoolableObject GetPooledObject()
+    public GameObject GetPooledObject()
     {
         for (int i = 0; i < maxAmountPool; i++)
         {
-            if (!_pooledObjects[i].gameObject.activeInHierarchy)
+            GameObject popedPoolObject = _pooledObjects.Pop();
+            if (!popedPoolObject.activeInHierarchy)
             {
-                return _pooledObjects[i];
+                return popedPoolObject;
             }
         }
 
         AddNewObject();
-        return _pooledObjects[^1];
+        return GetPooledObject();
     }
 }

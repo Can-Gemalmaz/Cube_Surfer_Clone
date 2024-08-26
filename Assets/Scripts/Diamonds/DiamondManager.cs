@@ -14,9 +14,9 @@ public class DiamondManager : MonoBehaviour
     {
         for (int i = 0; i < diamondTransforms.Length; i++)
         {
-            PoolableObject diamondObject = diamondObjectPool.GetPooledObject();
+            GameObject diamondObject = diamondObjectPool.GetPooledObject();
             diamondObject.transform.position = diamondTransforms[i].position;
-            diamondObject.gameObject.SetActive(true);
+            diamondObject.SetActive(true);
         }
     }
 
